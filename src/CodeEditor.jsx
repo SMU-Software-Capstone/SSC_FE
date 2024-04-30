@@ -180,9 +180,9 @@ const CodeEditor = () => {
 
   // 서버에 업로드
   const saveFile = () => {
-    // API.post(`/${teamName}/snapshots/save`).then((response) => {
-    //   console.log(response.data);
-    // });
+    API.post(`/s3/upload`).then((response) => {
+      console.log(response.data);
+    });
   };
 
   const handleKeydown = (e) => {
@@ -287,7 +287,7 @@ const CodeEditor = () => {
 
   return (
     <>
-      <Header />
+      <Header changeLanguage={changeLanguage} />
       <div className="mainFrameRow" style={{ gap: "0" }}>
         <div className="col">
           <Directory
@@ -297,21 +297,10 @@ const CodeEditor = () => {
             isCollapsed={isCollapsed}
             setIsCollapsed={setIsCollapsed}
           ></Directory>
-          {/* <List className="listText" elementClassName="listElementText" listNames={users} onClick='none'/> */}
           <Participants participants={users} isCollapsed={isCollapsed} />
         </div>
-        <div className="mainFrameCol" style={{ gap: "20px" }}>
-          <div className="topFrameBetween">
-            {selectedMenu}
-            <select className="selectBox" onChange={(e) => changeLanguage(e)}>
-              <option value="java">Java</option>
-              <option value="javascript">Javascript</option>
-              <option value="python">Python</option>
-              <option value="c">C</option>
-              <option value="cpp">C++</option>
-            </select>
-          </div>
-
+        <div className="mainFrameCol" style={{ gap: "0", width: "100%" }}>
+          {selectedMenu}
           <DragnDrop isOpened={isOpened} setIsOpened={setIsOpened}></DragnDrop>
 
           <div className="code-editor">

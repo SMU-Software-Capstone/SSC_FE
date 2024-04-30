@@ -106,10 +106,8 @@ const DragnDrop = ({ isOpened, setIsOpened }) => {
         )}
       </div>
       {isOpened && (
-        <div className="dropzone">
-          <div id="dropzone" onDragOver={handleDragOver} onDrop={handleDrop}>
+        <div className="dropzone" onDragOver={handleDragOver} onDrop={handleDrop}>
             Drop files here
-          </div>
         </div>
       )}
     </>
